@@ -22,7 +22,7 @@ def main():
     parser = argparse.ArgumentParser(description='chainer implementation of pix2pix')
     parser.add_argument('--batchsize', '-b', type=int, default=1,
                         help='Number of images in each mini-batch')
-    parser.add_argument('--epoch', '-e', type=int, default=50,
+    parser.add_argument('--epoch', '-e', type=int, default=200,
                         help='Number of sweeps over the dataset to train')
     parser.add_argument('--gpu', '-g', type=int, default=0,
                         help='GPU ID (negative value indicates CPU)')
@@ -34,7 +34,7 @@ def main():
                         help='Resume the training from snapshot')
     parser.add_argument('--seed', type=int, default=0,
                         help='Random seed')
-    parser.add_argument('--snapshot_interval', type=int, default=5000,
+    parser.add_argument('--snapshot_interval', type=int, default=2000,
                         help='Interval of snapshot')
     parser.add_argument('--display_interval', type=int, default=20,
                         help='Interval of displaying log to console')

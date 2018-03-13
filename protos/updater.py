@@ -13,7 +13,7 @@ class FacadeUpdater(chainer.training.StandardUpdater):
         super(FacadeUpdater, self).__init__(*args, **kwargs)
 
 
-    def loss_enc(self, enc, x_out, t_out, y_out, lam1=100, lam2=1):
+    def loss_enc(self, enc, x_out, t_out, y_out, lam1=10, lam2=1):
         batchsize,_,w,h = y_out.data.shape
         loss_rec = lam1*(F.mean_absolute_error(x_out, t_out))
         loss_adv = lam2*F.sum(F.softplus(-y_out)) / batchsize / w / h
@@ -21,7 +21,7 @@ class FacadeUpdater(chainer.training.StandardUpdater):
         chainer.report({'loss': loss}, enc)
         return loss
 
-    def loss_dec(self, dec, x_out, t_out, y_out, lam1=100, lam2=1):
+    def loss_dec(self, dec, x_out, t_out, y_out, lam1=10, lam2=1):
         batchsize,_,w,h = y_out.data.shape
         loss_rec = lam1*(F.mean_absolute_error(x_out, t_out))
         loss_adv = lam2*F.sum(F.softplus(-y_out)) / batchsize / w / h
