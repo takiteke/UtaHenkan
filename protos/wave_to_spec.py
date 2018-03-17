@@ -33,7 +33,7 @@ def collect_features(x, fs):
 def load_wav(path):
     w = librosa.core.load(path, sr=hparams.sample_rate)[0]
     w = librosa.effects.remix(w, intervals=librosa.effects.split(w))
-    w = librosa.effects.trim(w, top_db=20)[0]
+    #w = librosa.effects.trim(w, top_db=20)[0]
     return w
 
 def _stft(y):
@@ -61,7 +61,7 @@ def to_png(x):
 
 
 dataDIR = "../input/"
-data_range = (1, 40)
+data_range = (0, 40)
 print("load dataset start")
 print("    from: %s"%dataDIR)
 print("    range: [%d, %d)"%(data_range[0], data_range[1]))
@@ -87,6 +87,9 @@ for idx in tqdm(range(data_range[0], data_range[1])):
     #fを使ってalignment
     X, Y = f1[0].T[None], f2[0].T[None]
     s1_aligned, s2_aligned = DTWAligner(verbose=0, dist=melcd).transform((X, Y), (s1[0].T[None], s2[0].T[None]))
+
+    #s1_aligned = s1[0].T[None]
+    #s2_aligned = s2[0].T[None]
 
     #実数、虚数で2チャンネルの画像にする
     sp1 = np.zeros((3, s1_aligned[0].shape[0], s1_aligned[0].shape[1]), dtype=np.float32)

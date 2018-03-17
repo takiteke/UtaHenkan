@@ -22,15 +22,15 @@ def main():
     parser = argparse.ArgumentParser(description='chainer implementation of pix2pix')
     parser.add_argument('--batchsize', '-b', type=int, default=1,
                         help='Number of images in each mini-batch')
-    parser.add_argument('--epoch', '-e', type=int, default=2000,
+    parser.add_argument('--epoch', '-e', type=int, default=400,
                         help='Number of sweeps over the dataset to train')
     parser.add_argument('--gpu', '-g', type=int, default=0,
                         help='GPU ID (negative value indicates CPU)')
     parser.add_argument('--dataset', '-i', default='../input/png_cut',
                         help='Directory of image files.')
-    parser.add_argument('--out', '-o', default='../output_lam1=10',
+    parser.add_argument('--out', '-o', default='../output_unrevarb_lam1=10',
                         help='Directory to output the result')
-    parser.add_argument('--resume', '-r', default='../output_lam1=10/snapshot_iter_100000.npz',
+    parser.add_argument('--resume', '-r', default='../output_unrevarb_lam1=10/snapshot_iter_125000.npz',
                         help='Resume the training from snapshot')
     parser.add_argument('--seed', type=int, default=0,
                         help='Random seed')
@@ -66,8 +66,8 @@ def main():
     opt_dec = make_optimizer(dec)
     opt_dis = make_optimizer(dis)
 
-    train_d = FacadeDataset(args.dataset, data_range=(0,600))
-    test_d = FacadeDataset(args.dataset, data_range=(600,779))
+    train_d = FacadeDataset(args.dataset, data_range=(0,1100))
+    test_d = FacadeDataset(args.dataset, data_range=(1100,1456))
     #train_iter = chainer.iterators.MultiprocessIterator(train_d, args.batchsize, n_processes=4)
     #test_iter = chainer.iterators.MultiprocessIterator(test_d, args.batchsize, n_processes=4)
     train_iter = chainer.iterators.SerialIterator(train_d, args.batchsize)

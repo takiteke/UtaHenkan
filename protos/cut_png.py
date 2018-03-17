@@ -5,7 +5,7 @@ from PIL import Image
 
 
 dataDir='../input/'
-tar_width = 512
+tar_width = 137
 first_index = 0
 index = first_index
 for i in tqdm(range(0, 40)):
@@ -13,7 +13,7 @@ for i in tqdm(range(0, 40)):
     ritsuko = Image.open(dataDir+"png/%02d_ritsuko.png"%i)
 
     w = miki.size[0]
-    cut_num = int(w / tar_width)
+    cut_num = w // tar_width
     for j in range(cut_num):
         #cut
         miki_cut = miki.crop((j*tar_width, 0, min((j+1)*tar_width, w), 513))
