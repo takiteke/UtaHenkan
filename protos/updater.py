@@ -67,6 +67,11 @@ class FacadeUpdater(chainer.training.StandardUpdater):
         z = enc(x_in)
         x_out = dec(z)
 
+        w_in_st = int(w_in_w / 8 * 7)
+        #x_in = Variable(x_in.data[:,:,:,w_in_st:w_in_w])
+        x_in = x_in[:,:,:,w_in_st:w_in_w]
+        x_out = x_out[:,:,:,w_in_st:w_in_w]
+        t_out = t_out[:,:,:,w_in_st:w_in_w]
         y_fake = dis(x_in, x_out)
         y_real = dis(x_in, t_out)
 

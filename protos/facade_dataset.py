@@ -16,8 +16,8 @@ class FacadeDataset(dataset_mixin.DatasetMixin):
         self.dataDir = dataDir
         self.dataset = []
         for i in range(data_range[0],data_range[1]):
-            img = Image.open(dataDir+"/%04d_miki.png"%i)
-            label = Image.open(dataDir+"/%04d_ritsuko.png"%i)
+            img = Image.open(dataDir+"/%02d_miki.png"%i)
+            label = Image.open(dataDir+"/%02d_ritsuko.png"%i)
 
             img = np.asarray(img).astype("f")/128.0-1.0
             label = np.asarray(label).astype("f")/128.0-1.0
@@ -38,6 +38,7 @@ class FacadeDataset(dataset_mixin.DatasetMixin):
         _,h,w = self.dataset[i][0].shape
         x_l = np.random.randint(0,w-crop_width_w)
         x_r = x_l+crop_width_w
-        y_l = np.random.randint(0,h-crop_width_h)
+        #y_l = np.random.randint(0,h-crop_width_h)
+        y_l = 0
         y_r = y_l+crop_width_h
         return self.dataset[i][1][:,y_l:y_r,x_l:x_r], self.dataset[i][0][:,y_l:y_r,x_l:x_r]

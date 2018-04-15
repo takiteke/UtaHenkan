@@ -61,7 +61,7 @@ def to_png(x):
 
 
 dataDIR = "../input/"
-data_range = (0, 40)
+data_range = (40, 41)
 print("load dataset start")
 print("    from: %s"%dataDIR)
 print("    range: [%d, %d)"%(data_range[0], data_range[1]))
