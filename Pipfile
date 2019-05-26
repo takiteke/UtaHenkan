@@ -1,0 +1,24 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+
+[packages]
+numpy = "*"
+cupy-cuda100 = "*"
+pillow = "*"
+h5py = "*"
+chainer = "*"
+pylint = "*"
+tqdm = "*"
+librosa = "*"
+llvmlite = "==0.27.0"
+numba = "==0.42.0"
+pyworld = "*"
+pysptk = "*"
+
+[requires]
+python_version = "3.7"
